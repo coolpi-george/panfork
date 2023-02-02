@@ -1,0 +1,41 @@
+--- a/include/pci_ids/iris_pci_ids.h
++++ b/include/pci_ids/iris_pci_ids.h
+@@ -215,8 +215,6 @@ CHIPSET(0x4907, sg1, "SG1", "Intel(R) Gr
+ CHIPSET(0x4908, dg1, "DG1", "Intel(R) Graphics")
+ CHIPSET(0x4909, dg1, "DG1", "Intel(R) Graphics")
+ 
+-/* Waiting on i915 upstream support */
+-#if 0
+ CHIPSET(0x4f80, dg2_g10, "DG2", "Intel(R) Graphics")
+ CHIPSET(0x4f81, dg2_g10, "DG2", "Intel(R) Graphics")
+ CHIPSET(0x4f82, dg2_g10, "DG2", "Intel(R) Graphics")
+@@ -237,4 +235,3 @@ CHIPSET(0x56a5, dg2_g11, "DG2", "Intel(R
+ CHIPSET(0x56a6, dg2_g11, "DG2", "Intel(R) Graphics")
+ CHIPSET(0x56b0, dg2_g11, "DG2", "Intel(R) Graphics")
+ CHIPSET(0x56b1, dg2_g11, "DG2", "Intel(R) Graphics")
+-#endif
+--- a/src/intel/dev/intel_device_info.c
++++ b/src/intel/dev/intel_device_info.c
+@@ -70,6 +70,7 @@ static const struct {
+    { "adl", 0x4680 },
+    { "sg1", 0x4907 },
+    { "rpl", 0xa780 },
++   { "dg2", 0x56a0 },
+ };
+ 
+ /**
+@@ -1063,12 +1064,12 @@ static const struct intel_device_info in
+    .has_coarse_pixel_primitive_and_cb = true,                   \
+    .has_mesh_shading = true
+ 
+-UNUSED static const struct intel_device_info intel_device_info_dg2_g10 = {
++static const struct intel_device_info intel_device_info_dg2_g10 = {
+    DG2_FEATURES,
+    .platform = INTEL_PLATFORM_DG2_G10,
+ };
+ 
+-UNUSED static const struct intel_device_info intel_device_info_dg2_g11 = {
++static const struct intel_device_info intel_device_info_dg2_g11 = {
+    DG2_FEATURES,
+    .platform = INTEL_PLATFORM_DG2_G11,
+ };
